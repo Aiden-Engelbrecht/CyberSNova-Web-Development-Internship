@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a StudyCircle student account.">
+    <title>Create an Account | StudyCircle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main class="page-layout">
+        <!-- Left Side: Intro -->
+        <section class="introduction-panel" aria-labelledby="page-heading">
+            <div class="introduction-content">
+                <a href="#" class="logo" aria-label="StudyCircle home">
+                    <span class="logo-mark">S</span>
+                    <span>StudyCircle</span>
+                </a>
+
+                <div class="introduction-copy">
+                    <p class="eyebrow">Your learning community</p>
+                    <h1 id="page-heading">Study with direction, not confusion.</h1>
+                    <p class="introduction-text">
+                        Create your account to organise study groups,
+                        share resources and keep track of your academic goals.
+                    </p>
+
+                    <ul class="benefit-list">
+                        <li>
+                            <span class="benefit-icon" aria-hidden="true">✓</span>
+                            Find students taking the same modules
+                        </li>
+                        <li>
+                            <span class="benefit-icon" aria-hidden="true">✓</span>
+                            Organise study sessions and shared deadlines
+                        </li>
+                        <li>
+                            <span class="benefit-icon" aria-hidden="true">✓</span>
+                            Keep useful resources in one place
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="panel-note">
+                    Built for students who learn better together.
+                </p>
+            </div>
+        </section>
+
+        <!-- Right Side: Form -->
+        <section class="form-panel" aria-labelledby="form-heading">
+            <div class="form-container">
+                <header class="form-header">
+                    <p class="step-label">Account registration</p>
+                    <h2 id="form-heading">Create your account</h2>
+                    <p>All fields marked with an asterisk (*) are required.</p>
+                </header>
+
+                <div class="success-message" id="success-message" role="status" aria-live="polite" hidden>
+                    <span class="success-icon" aria-hidden="true">✓</span>
+                    <div>
+                        <strong>Registration successful</strong>
+                        <p>Your StudyCircle account has been created.</p>
+                    </div>
+                </div>
+
+                <form id="registration-form" novalidate>
+                    <!-- Row 1 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First name <span aria-hidden="true">*</span></label>
+                            <input type="text" id="first-name" name="firstName" placeholder="e.g. Sarah" autocomplete="given-name" required>
+                            <small class="error-message" id="first-name-error"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last name <span aria-hidden="true">*</span></label>
+                            <input type="text" id="last-name" name="lastName" placeholder="e.g. Smith" autocomplete="family-name" required>
+                            <small class="error-message" id="last-name-error"></small>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email address <span aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" required>
+                            <small class="error-message" id="email-error"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="study-area">Area of study <span aria-hidden="true">*</span></label>
+                            <select id="study-area" name="studyArea" required>
+                                <option value="">Select area</option>
+                                <option value="information-technology">Information Technology</option>
+                                <option value="computer-science">Computer Science</option>
+                                <option value="business-management">Business Management</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="education">Education</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <small class="error-message" id="study-area-error"></small>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">SA phone number <span aria-hidden="true">*</span></label>
+                            <div class="phone-input-wrapper">
+                                <span class="country-code" aria-hidden="true">+27</span>
+                                <input type="tel" id="phone" name="phone" placeholder="82 123 4567" autocomplete="tel" inputmode="numeric" required>
+                            </div>
+                            <small class="field-hint">9 digits without the first zero.</small>
+                            <small class="error-message" id="phone-error"></small>
+                        </div>
+                        <div class="form-group">
+                            <!-- Empty spacer for layout -->
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Passwords -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password <span aria-hidden="true">*</span></label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="password" name="password" placeholder="Create password" autocomplete="new-password" required>
+                                <button class="password-toggle" type="button" data-password-target="password" aria-label="Show password">Show</button>
+                            </div>
+                            <div class="password-strength" id="password-strength">
+                                <div class="strength-track"><span class="strength-bar"></span></div>
+                                <span class="strength-label">No password entered</span>
+                            </div>
+                            <small class="error-message" id="password-error"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm password <span aria-hidden="true">*</span></label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="confirm-password" name="confirmPassword" placeholder="Re-enter password" autocomplete="new-password" required>
+                                <button class="password-toggle" type="button" data-password-target="confirm-password" aria-label="Show confirmed password">Show</button>
+                            </div>
+                            <small class="error-message" id="confirm-password-error"></small>
+                        </div>
+                    </div>
+                    
+                    <small class="field-hint" style="margin-top: -0.5rem; margin-bottom: 1.5rem; display: block;">
+                        Password requires 8+ chars, uppercase, lowercase, number, and symbol.
+                    </small>
+
+                    <!-- Bottom Section -->
+                    <div class="form-bottom">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</label>
+                        </div>
+                        <small class="error-message checkbox-error" id="terms-error"></small>
+
+                        <button class="submit-button" type="submit">Create account</button>
+                        <p class="sign-in-text">Already have an account? <a href="#">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/validation.js"></script>
+</body>
+</html>
