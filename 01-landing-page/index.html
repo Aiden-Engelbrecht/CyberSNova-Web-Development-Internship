@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="FocusFlow helps students organise tasks, study sessions and academic deadlines."
-    >
-
-    <title>FocusFlow | Plan Better. Study Smarter.</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FocusFlow is a study planner for students who need to track assignments, study sessions and deadlines in one place.">
+    <title>FocusFlow — A study planner that actually fits a student week</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <header class="site-header">
-        <nav class="navbar container" aria-label="Main navigation">
-            <a href="#home" class="logo" aria-label="FocusFlow home">
+        <nav class="navbar container" aria-label="Main">
+            <a href="#home" class="logo" aria-label="FocusFlow — home">
                 Focus<span>Flow</span>
             </a>
 
@@ -40,64 +38,53 @@
             <ul class="nav-links" id="navigation-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li>
-                    <a href="#get-started" class="nav-button">
-                        Get Started
-                    </a>
-                </li>
+                <li><a href="#get-started" class="nav-button">Get started</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="main">
+        <!-- HERO -->
         <section class="hero" id="home">
             <div class="container hero-layout">
                 <div class="hero-content">
-                    <p class="eyebrow">Productivity designed for students</p>
+                    <p class="eyebrow">Built for students, not project managers</p>
 
                     <h1>
-                        Plan better.
-                        <span>Study smarter.</span>
+                        Stop losing track<br>
+                        <span>of what's due when.</span>
                     </h1>
 
                     <p class="hero-description">
-                        FocusFlow brings your tasks, study sessions and
-                        academic deadlines into one simple workspace.
+                        FocusFlow keeps your assignments, study sessions and
+                        test dates in one view — so you spend less time
+                        planning and more time actually studying.
                     </p>
 
                     <div class="hero-actions">
-                        <a href="#get-started" class="button button-primary">
-                            Start for free
-                        </a>
-
-                        <a href="#features" class="button button-secondary">
-                            Explore features
-                        </a>
+                        <a href="#get-started" class="button button-primary">Start free</a>
+                        <a href="#features" class="button button-secondary">See what it does</a>
                     </div>
 
-                    <p class="hero-note">
-                        Free to get started. No credit card required.
-                    </p>
+                    <p class="hero-note">No card, no trial timer. Just a free account.</p>
                 </div>
 
-                <div class="hero-preview" aria-label="FocusFlow dashboard preview">
+                <div class="hero-preview" aria-hidden="true">
                     <div class="preview-header">
                         <div>
-                            <p class="preview-label">Today</p>
-                            <h2>Good morning, Alex</h2>
+                            <p class="preview-label">Today · Mon 19 Oct</p>
+                            <h2>Morning, Alex</h2>
                         </div>
-
                         <span class="status-badge">On track</span>
                     </div>
 
                     <div class="progress-card">
                         <div class="card-heading">
-                            <span>Weekly progress</span>
+                            <span>This week</span>
                             <strong>72%</strong>
                         </div>
-
                         <div class="progress-track">
                             <div class="progress-value"></div>
                         </div>
@@ -116,7 +103,7 @@
                         <article class="task-card">
                             <span class="task-check"></span>
                             <div>
-                                <h3>Complete assignment draft</h3>
+                                <h3>Assignment draft</h3>
                                 <p>Web Development</p>
                             </div>
                             <span class="task-time">13:30</span>
@@ -125,7 +112,7 @@
                         <article class="task-card">
                             <span class="task-check"></span>
                             <div>
-                                <h3>Prepare for class test</h3>
+                                <h3>Class test prep</h3>
                                 <p>Network Security</p>
                             </div>
                             <span class="task-time">18:00</span>
@@ -135,14 +122,15 @@
             </div>
         </section>
 
+        <!-- FEATURES -->
         <section class="features section" id="features">
             <div class="container">
                 <div class="section-heading">
-                    <p class="eyebrow">Everything in one place</p>
-                    <h2>Tools that make studying feel manageable</h2>
+                    <p class="eyebrow">What it actually does</p>
+                    <h2>Three things, done properly</h2>
                     <p>
-                        Focus on your work instead of trying to remember
-                        what needs to be done next.
+                        No gamified streaks, no 40-tab dashboards. Just the
+                        three things students actually need.
                     </p>
                 </div>
 
@@ -151,8 +139,8 @@
                         <span class="feature-number">01</span>
                         <h3>Task planning</h3>
                         <p>
-                            Organise assignments and personal tasks using
-                            clear priorities and due dates.
+                            Add assignments and personal tasks with a due date
+                            and a priority. Sort by what's actually next.
                         </p>
                     </article>
 
@@ -160,58 +148,72 @@
                         <span class="feature-number">02</span>
                         <h3>Study sessions</h3>
                         <p>
-                            Break large subjects into focused sessions that
-                            fit your available time.
+                            Split big topics into sessions that fit the gap
+                            between your lectures. Track what you covered.
                         </p>
                     </article>
 
                     <article class="feature-card">
                         <span class="feature-number">03</span>
-                        <h3>Progress tracking</h3>
+                        <h3>Weekly review</h3>
                         <p>
-                            View completed work and identify the areas that
-                            still need your attention.
+                            At the end of each week, see what you finished and
+                            what slipped. Adjust next week from there.
                         </p>
                     </article>
                 </div>
             </div>
         </section>
 
+        <!-- TESTIMONIALS -->
         <section class="testimonials section" id="testimonials">
             <div class="container">
                 <div class="section-heading">
-                    <p class="eyebrow">Student experiences</p>
-                    <h2>A calmer way to stay organised</h2>
+                    <p class="eyebrow">From other students</p>
+                    <h2>What people said after a semester</h2>
                 </div>
 
                 <div class="testimonial-grid">
                     <article class="testimonial-card">
                         <p>
-                            “FocusFlow helped me separate urgent assignments
-                            from tasks that could wait. My week finally felt
-                            manageable.”
+                            "I used to keep due dates in my head and hope for
+                            the best. Now I open one page in the morning and
+                            know what I'm doing that day."
                         </p>
-
                         <div class="student">
-                            <span class="student-avatar">TM</span>
+                            <span class="student-avatar" aria-hidden="true">TM</span>
                             <div>
                                 <h3>Thando M.</h3>
-                                <p>Information Technology student</p>
+                                <p>2nd year, Information Technology</p>
                             </div>
                         </div>
                     </article>
 
                     <article class="testimonial-card">
                         <p>
-                            “I can see my deadlines and study sessions without
-                            jumping between several different applications.”
+                            "The weekly review is the only feature I've stuck
+                            with. Seeing what I actually finished made me
+                            realise I was over-planning and under-doing."
                         </p>
-
                         <div class="student">
-                            <span class="student-avatar">LN</span>
+                            <span class="student-avatar" aria-hidden="true">LN</span>
                             <div>
                                 <h3>Leah N.</h3>
-                                <p>Business Management student</p>
+                                <p>3rd year, Business Management</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <p>
+                            "It's not trying to be Notion. That's the point.
+                            I open it, tick three things off, close it."
+                        </p>
+                        <div class="student">
+                            <span class="student-avatar" aria-hidden="true">SK</span>
+                            <div>
+                                <h3>Sipho K.</h3>
+                                <p>1st year, Computer Science</p>
                             </div>
                         </div>
                     </article>
@@ -219,68 +221,52 @@
             </div>
         </section>
 
+        <!-- PRICING -->
         <section class="pricing section" id="pricing">
             <div class="container">
                 <div class="section-heading">
-                    <p class="eyebrow">Simple pricing</p>
-                    <h2>Choose what works for you</h2>
+                    <p class="eyebrow">Pricing</p>
+                    <h2>Free unless you need more room</h2>
                 </div>
 
                 <div class="pricing-grid">
                     <article class="pricing-card">
                         <p class="plan-name">Starter</p>
                         <p class="price">Free</p>
-                        <p class="plan-description">
-                            Everything needed to organise your studies.
-                        </p>
-
+                        <p class="plan-description">For one semester at a time.</p>
                         <ul>
                             <li>Up to 20 active tasks</li>
-                            <li>Weekly study planner</li>
+                            <li>Weekly planner view</li>
                             <li>Basic progress tracking</li>
                         </ul>
-
-                        <a href="#get-started" class="button button-secondary">
-                            Choose Starter
-                        </a>
+                        <a href="#get-started" class="button button-secondary">Choose Starter</a>
                     </article>
 
                     <article class="pricing-card featured-plan">
-                        <span class="popular-label">Most popular</span>
+                        <span class="popular-label">Most chosen</span>
                         <p class="plan-name">Focus Plus</p>
                         <p class="price">R49 <span>/ month</span></p>
-                        <p class="plan-description">
-                            Extra tools for demanding academic schedules.
-                        </p>
-
+                        <p class="plan-description">For students juggling too many modules.</p>
                         <ul>
                             <li>Unlimited tasks</li>
-                            <li>Advanced progress insights</li>
+                            <li>Detailed weekly review</li>
                             <li>Custom study reminders</li>
                         </ul>
-
-                        <a href="#get-started" class="button button-primary">
-                            Choose Focus Plus
-                        </a>
+                        <a href="#get-started" class="button button-primary">Choose Focus Plus</a>
                     </article>
                 </div>
             </div>
         </section>
 
+        <!-- CTA -->
         <section class="call-to-action section" id="get-started">
             <div class="container call-to-action-content">
                 <div>
-                    <p class="eyebrow">Start today</p>
-                    <h2>Make space for focused work.</h2>
-                    <p>
-                        Create your free workspace and organise your next
-                        study week in minutes.
-                    </p>
+                    <p class="eyebrow">Ready when you are</p>
+                    <h2>Set up your first week in about five minutes.</h2>
+                    <p>Add three tasks and one test date. That's enough to start.</p>
                 </div>
-
-                <a href="#" class="button button-light">
-                    Create free account
-                </a>
+                <a href="#" class="button button-light">Create a free account</a>
             </div>
         </section>
     </main>
@@ -288,28 +274,22 @@
     <footer class="site-footer">
         <div class="container footer-layout">
             <div>
-                <a href="#home" class="logo footer-logo">
+                <a href="#home" class="logo footer-logo" aria-label="FocusFlow — back to top">
                     Focus<span>Flow</span>
                 </a>
-
-                <p>
-                    A simpler way for students to plan, focus and progress.
-                </p>
+                <p>A study planner for people who actually have deadlines.</p>
             </div>
 
-            <div class="footer-links">
+            <nav class="footer-links" aria-label="Footer">
                 <a href="#features">Features</a>
-                <a href="#testimonials">Testimonials</a>
+                <a href="#testimonials">Reviews</a>
                 <a href="#pricing">Pricing</a>
                 <a href="mailto:hello@focusflow.example">Contact</a>
-            </div>
+            </nav>
         </div>
 
         <div class="container footer-bottom">
-            <p>
-                &copy; <span id="current-year">2026</span>
-                FocusFlow. Student internship project.
-            </p>
+            <p>&copy; 2026 FocusFlow. Student project for the CyberSNova internship.</p>
         </div>
     </footer>
 
