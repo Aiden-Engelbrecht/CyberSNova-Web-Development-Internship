@@ -18,7 +18,7 @@ CyberSNova Web Development Internship.
 ## Beginner-Level Projects
 
 1. FocusFlow Landing Page — Completed
-2. Responsive Registration Form — Not started
+2. Responsive Registration Form — Completed
 3. Digital Calculator — Not started
 4. To-Do List Application — Not started
 
