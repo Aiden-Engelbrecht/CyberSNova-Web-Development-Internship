@@ -19,7 +19,7 @@ CyberSNova Web Development Internship.
 
 1. FocusFlow Landing Page — Completed
 2. Responsive Registration Form — Completed
-3. Digital Calculator — Not started
+3. Digital Calculator — Completed
 4. To-Do List Application — Not started
 
 ## Advanced-Level Project
