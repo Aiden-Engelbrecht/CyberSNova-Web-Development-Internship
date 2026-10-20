@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A clean, functional digital calculator.">
-    <title>Calculator | FocusFlow</title>
+    <title>Calcly | FocusFlow</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,53 +14,91 @@
 </head>
 
 <body>
-    <div class="app-container" id="app-container">
+    <main class="page-layout">
         
-        <!-- Calculator Panel -->
-        <main class="calculator">
-            <header class="calc-header">
-                <div class="logo">
-                    <span class="logo-mark">C</span>
-                    <span class="logo-text">Calculator</span>
+        <!-- Left Side: Typography & Info -->
+        <section class="intro-panel">
+            <div class="intro-content">
+                <header class="intro-header">
+                    <div class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Calcly</span>
+                    </div>
+                </header>
+
+                <div class="hero-text">
+                    <p class="eyebrow">Everyday calculations</p>
+                    <h1>Simple maths,<br>without the<br>clutter.</h1>
+                    <p class="subtitle">
+                        A responsive calculator for quick arithmetic at your desk or on the go.
+                    </p>
                 </div>
-                <button id="toggle-history" class="history-toggle-btn">
-                    <span id="history-btn-text">History</span>
-                </button>
-            </header>
 
-            <div class="display-screen">
-                <div class="expression" id="expression" aria-live="polite"></div>
-                <div class="result" id="result" aria-live="polite">0</div>
+                <div class="tip-card">
+                    <span class="tip-badge">TIP</span>
+                    <p>You can also use your keyboard.</p>
+                </div>
             </div>
+        </section>
 
-            <div class="keypad">
-                <button class="key key-accent" data-action="clear">AC</button>
-                <button class="key key-accent" data-action="delete">DEL</button>
-                <button class="key key-operator" data-action="percent">%</button>
-                <button class="key key-operator" data-action="divide">÷</button>
+        <!-- Right Side: The Calculator -->
+        <section class="calc-panel">
+            <div class="calculator">
+                <header class="calc-header">
+                    <div>
+                        <h2>Calculator</h2>
+                        <p class="status-text">Ready</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="online-badge">
+                            <span class="dot"></span> Online
+                        </div>
+                        <button id="toggle-history" class="history-toggle-btn">
+                            <span id="history-btn-text">History</span>
+                        </button>
+                    </div>
+                </header>
 
-                <button class="key" data-number="7">7</button>
-                <button class="key" data-number="8">8</button>
-                <button class="key" data-number="9">9</button>
-                <button class="key key-operator" data-action="multiply">×</button>
+                <div class="display-screen">
+                    <div class="expression" id="expression" aria-live="polite"></div>
+                    <div class="result" id="result" aria-live="polite">0</div>
+                </div>
 
-                <button class="key" data-number="4">4</button>
-                <button class="key" data-number="5">5</button>
-                <button class="key" data-number="6">6</button>
-                <button class="key key-operator" data-action="subtract">−</button>
+                <div class="keypad">
+                    <button class="key key-action" data-action="clear">AC</button>
+                    <button class="key key-action" data-action="delete">DEL</button>
+                    <button class="key key-action" data-action="percent">%</button>
+                    <button class="key key-operator" data-action="divide">÷</button>
 
-                <button class="key" data-number="1">1</button>
-                <button class="key" data-number="2">2</button>
-                <button class="key" data-number="3">3</button>
-                <button class="key key-operator" data-action="add">+</button>
+                    <button class="key" data-number="7">7</button>
+                    <button class="key" data-number="8">8</button>
+                    <button class="key" data-number="9">9</button>
+                    <button class="key key-operator" data-action="multiply">×</button>
 
-                <button class="key key-span-2" data-number="0">0</button>
-                <button class="key" data-action="decimal">.</button>
-                <button class="key key-equals" data-action="calculate">=</button>
+                    <button class="key" data-number="4">4</button>
+                    <button class="key" data-number="5">5</button>
+                    <button class="key" data-number="6">6</button>
+                    <button class="key key-operator" data-action="subtract">−</button>
+
+                    <button class="key" data-number="1">1</button>
+                    <button class="key" data-number="2">2</button>
+                    <button class="key" data-number="3">3</button>
+                    <button class="key key-operator" data-action="add">+</button>
+
+                    <button class="key key-action" data-action="negate">+/−</button>
+                    <button class="key" data-number="0">0</button>
+                    <button class="key" data-action="decimal">.</button>
+                    <button class="key key-equals" data-action="calculate">=</button>
+                </div>
+
+                <footer class="calc-footer">
+                    <p>Supports basic arithmetic and decimal values.</p>
+                    <button id="reset-calc" class="reset-btn">Reset calculator</button>
+                </footer>
             </div>
-        </main>
+        </section>
 
-        <!-- Side Drawer (History) -->
+        <!-- Side Drawer (History) - Now part of the main grid -->
         <aside class="history-drawer" id="history-drawer">
             <header class="history-header">
                 <h2>History</h2>
@@ -71,7 +109,7 @@
             </ul>
         </aside>
 
-    </div>
+    </main>
 
     <script src="js/calculator.js"></script>
 </body>

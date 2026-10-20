@@ -4,15 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const keypad = document.querySelector(".keypad");
     const historyList = document.getElementById("history-list");
     const clearHistoryBtn = document.getElementById("clear-history");
+    const resetCalcBtn = document.getElementById("reset-calc");
     
-    const appContainer = document.getElementById("app-container");
+    const pageLayout = document.querySelector(".page-layout");
     const toggleHistoryBtn = document.getElementById("toggle-history");
     const historyBtnText = document.getElementById("history-btn-text");
 
-    let currentInput = "0";
-    let previousInput = "";
-    let currentOperator = null;
-    let shouldResetScreen = false;
+    let currentInput = "0";          
+    let previousInput = "";          
+    let currentOperator = null;      
+    let shouldResetScreen = false;   
+    let lastOperatorString = ""; 
     
     let history = JSON.parse(sessionStorage.getItem("calc-history")) || [];
 
@@ -26,11 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateDisplay() {
-        resultEl.textContent = formatNumber(currentInput);
         if (currentOperator !== null) {
             const opSymbol = { "+": "+", "-": "−", "*": "×", "/": "÷", "%": "%" }[currentOperator];
             expressionEl.textContent = `${formatNumber(previousInput)} ${opSymbol}`;
+        } else if (lastOperatorString !== "") {
+            expressionEl.textContent = lastOperatorString;
+        } else {
+            expressionEl.textContent = "";
         }
+        
+        resultEl.textContent = formatNumber(currentInput);
     }
 
     function renderHistory() {
@@ -51,11 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentInput = item.result.replace(/,/g, "");
                 currentOperator = null;
                 previousInput = "";
+                lastOperatorString = "";
                 shouldResetScreen = false;
-                expressionEl.textContent = "";
                 updateDisplay();
-                
-                if (window.innerWidth <= 768 && appContainer.classList.contains("history-open")) {
+                if (window.innerWidth <= 800 && pageLayout.classList.contains("history-open")) {
                     toggleHistory();
                 }
             });
@@ -71,11 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function appendNumber(number) {
-        if (currentInput === "0" || shouldResetScreen) {
+        if (shouldResetScreen) {
             currentInput = number;
             shouldResetScreen = false;
+            lastOperatorString = ""; 
         } else {
-            currentInput += number;
+            if (currentInput === "0") {
+                currentInput = number;
+            } else {
+                currentInput += number;
+            }
         }
         updateDisplay();
     }
@@ -84,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (shouldResetScreen) {
             currentInput = "0.";
             shouldResetScreen = false;
+            lastOperatorString = "";
         } else if (!currentInput.includes(".")) {
             currentInput += ".";
         }
@@ -94,9 +106,31 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentOperator !== null && !shouldResetScreen) {
             calculate();
         }
+        
         previousInput = currentInput;
         currentOperator = operator;
         shouldResetScreen = true;
+        lastOperatorString = "";
+        updateDisplay();
+    }
+
+    // --- NEW PERCENTAGE LOGIC ---
+    function applyPercentage() {
+        if (currentInput === "Error" || currentInput === "0") return;
+        
+        let currentValue = parseFloat(currentInput.replace(/,/g, ""));
+        let percentValue = 0;
+
+        // If there's an active operator (e.g., 100 + 10%), calculate 10% of 100
+        if (currentOperator !== null && previousInput !== "") {
+            let prevValue = parseFloat(previousInput.replace(/,/g, ""));
+            percentValue = (prevValue * currentValue) / 100;
+        } else {
+            // If no operator, just divide by 100 (e.g., 50% becomes 0.5)
+            percentValue = currentValue / 100;
+        }
+
+        currentInput = percentValue.toString();
         updateDisplay();
     }
 
@@ -106,9 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const prev = parseFloat(previousInput.replace(/,/g, ""));
         const current = parseFloat(currentInput.replace(/,/g, ""));
         let result = 0;
-        let expressionString = "";
 
-        const opSymbol = { "+": "+", "-": "−", "*": "×", "/": "÷", "%": "%" }[currentOperator];
+        const opSymbol = { "+": "+", "-": "−", "*": "×", "/": "÷" }[currentOperator];
 
         switch (currentOperator) {
             case "+": result = prev + current; break;
@@ -119,35 +152,50 @@ document.addEventListener("DOMContentLoaded", () => {
                     currentInput = "Error";
                     currentOperator = null;
                     shouldResetScreen = true;
-                    expressionEl.textContent = "";
+                    lastOperatorString = "";
                     updateDisplay();
                     return;
                 }
                 result = prev / current; 
                 break;
-            case "%": result = prev % current; break;
         }
 
         result = Math.round(result * 100000000) / 100000000;
-        expressionString = `${formatNumber(previousInput)} ${opSymbol} ${formatNumber(currentInput)}`;
+        
+        lastOperatorString = `${formatNumber(previousInput)} ${opSymbol} ${formatNumber(currentInput)} =`;
+        
+        // Save the expression before resetting the variables for the history list
+        let historyExpression = `${formatNumber(previousInput)} ${opSymbol} ${formatNumber(currentInput)}`;
         
         currentInput = result.toString();
         currentOperator = null;
         previousInput = "";
         shouldResetScreen = true;
-        expressionEl.textContent = "";
         
         updateDisplay();
-        saveHistory(expressionString, formatNumber(currentInput));
+        saveHistory(historyExpression, formatNumber(currentInput));
     }
 
     function deleteNumber() {
-        if (currentInput === "Error") {
-            currentInput = "0";
-        } else if (currentInput.length === 1 || currentInput === "0") {
+        if (currentInput === "Error" || shouldResetScreen) {
+            resetCalculator();
+            return;
+        }
+        
+        if (currentInput.length === 1 || currentInput === "0") {
             currentInput = "0";
         } else {
             currentInput = currentInput.slice(0, -1);
+        }
+        updateDisplay();
+    }
+
+    function negateNumber() {
+        if (currentInput === "0" || currentInput === "Error") return;
+        if (currentInput.startsWith("-")) {
+            currentInput = currentInput.substring(1);
+        } else {
+            currentInput = "-" + currentInput;
         }
         updateDisplay();
     }
@@ -157,22 +205,25 @@ document.addEventListener("DOMContentLoaded", () => {
         previousInput = "";
         currentOperator = null;
         shouldResetScreen = false;
-        expressionEl.textContent = "";
+        lastOperatorString = "";
         updateDisplay();
     }
 
     function toggleHistory() {
-        const isOpen = appContainer.classList.contains("history-open");
+        const isOpen = pageLayout.classList.contains("history-open");
         if (isOpen) {
-            appContainer.classList.remove("history-open");
+            pageLayout.classList.remove("history-open");
             historyBtnText.textContent = "History";
         } else {
-            appContainer.classList.add("history-open");
-            historyBtnText.textContent = "Close History";
+            pageLayout.classList.add("history-open");
+            historyBtnText.textContent = "Close";
         }
     }
 
+    // --- Event Listeners ---
+    
     toggleHistoryBtn.addEventListener("click", toggleHistory);
+    resetCalcBtn.addEventListener("click", resetCalculator);
 
     keypad.addEventListener("click", (e) => {
         const target = e.target;
@@ -187,10 +238,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (action === "subtract") handleOperator("-");
             if (action === "multiply") handleOperator("*");
             if (action === "divide") handleOperator("/");
-            if (action === "percent") handleOperator("%");
+            if (action === "percent") applyPercentage(); // <-- Updated here
             if (action === "calculate") calculate();
             if (action === "clear") resetCalculator();
             if (action === "delete") deleteNumber();
+            if (action === "negate") negateNumber();
         }
     });
 
@@ -202,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "-") handleOperator("-");
         if (e.key === "*") handleOperator("*");
         if (e.key === "/") handleOperator("/");
-        if (e.key === "%") handleOperator("%");
+        if (e.key === "%") applyPercentage(); // <-- Updated here
         if (e.key === "Enter" || e.key === "=") calculate();
         if (e.key === "Backspace") deleteNumber();
         if (e.key === "Escape") resetCalculator();
