@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | CyberSNova</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Page-specific styles */
+        .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        
+        .form-sidebar { background: var(--surface); padding: 2.5rem; border-radius: var(--radius-lg); border: 1px solid var(--line); position: sticky; top: 100px; }
+        .form-sidebar h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; }
+        .form-sidebar p { color: var(--ink-soft); font-size: 0.9375rem; margin-bottom: 2rem; }
+        
+        .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+        .benefit-list li { display: flex; gap: 0.75rem; font-size: 0.9375rem; color: var(--ink); font-weight: 500; }
+        .benefit-icon { display: grid; place-items: center; width: 24px; height: 24px; background: var(--accent-soft); color: var(--accent-dark); border-radius: 50%; font-size: 0.75rem; flex-shrink: 0; }
+
+        .form-container { background: var(--surface); padding: 2.5rem; border-radius: var(--radius-lg); border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(0,0,0,0.03); }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        
+        label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--ink); }
+        input, select {
+            width: 100%; padding: 0.85rem 1rem; font-family: var(--font-sans); font-size: 0.9375rem;
+            color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+            border-radius: var(--radius-sm); transition: all 0.2s; outline: none;
+        }
+        input:focus, select:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px var(--accent-soft); }
+        input.input-error, select.input-error { border-color: var(--error); background: #fef2f2; }
+        input.input-valid, select.input-valid { border-color: var(--success); }
+
+        .error-message { display: none; font-size: 0.75rem; color: var(--error); margin-top: 0.35rem; font-weight: 500; }
+        .error-message.visible { display: block; }
+
+        /* Password Strength */
+        .password-strength { margin-top: 0.5rem; }
+        .strength-track { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 0.25rem; }
+        .strength-bar { display: block; height: 100%; width: 0%; background: var(--line); border-radius: 999px; transition: all 0.3s; }
+        .password-strength.weak .strength-bar { width: 25%; background: var(--error); }
+        .password-strength.fair .strength-bar { width: 50%; background: #eab308; }
+        .password-strength.good .strength-bar { width: 75%; background: #3b82f6; }
+        .password-strength.strong .strength-bar { width: 100%; background: var(--success); }
+
+        .checkbox-group { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .checkbox-group input { width: 18px; height: 18px; margin-top: 0.2rem; accent-color: var(--accent); }
+        .checkbox-group label { font-weight: 400; font-size: 0.875rem; color: var(--ink-soft); margin: 0; }
+
+        /* Fake Email Preview Styles */
+        .email-preview { display: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 2rem; box-shadow: 0 12px 32px rgba(0,0,0,0.05); animation: slide-up 0.4s ease forwards; }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .email-header { border-bottom: 1px solid var(--line); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .email-header h3 { font-family: var(--font-sans); font-size: 1rem; margin-bottom: 0.25rem; }
+        .email-time { font-size: 0.75rem; background: var(--accent-soft); color: var(--accent-dark); padding: 0.25rem 0.75rem; border-radius: 999px; font-weight: 600; }
+        .email-body p { margin-bottom: 1rem; color: var(--ink-soft); }
+        
+        @media (max-width: 900px) {
+            .form-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .form-sidebar { position: static; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><span class="logo-mark">C</span> CyberSNova</a>
+            <button class="menu-toggle" aria-label="Toggle menu">Menu</button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="domains.html">Domains</a>
+                <a href="tasks.html">Tasks</a>
+                <a href="guidelines.html">Guidelines</a>
+                <a href="register.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="form-layout">
+                <!-- Sidebar -->
+                <div class="form-sidebar">
+                    <h2>Start your journey.</h2>
+                    <p>Fill out the form to apply for the CyberSNova internship. We'll review your application and get back to you within 48 hours.</p>
+                    <ul class="benefit-list">
+                        <li><span class="benefit-icon">✓</span> Real-world project experience</li>
+                        <li><span class="benefit-icon">✓</span> Mentorship from industry professionals</li>
+                        <li><span class="benefit-icon">✓</span> Certificate upon successful completion</li>
+                    </ul>
+                </div>
+
+                <!-- Form & Email Preview Container -->
+                <div class="form-container">
+                    <!-- The Form -->
+                    <form id="reg-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name *</label>
+                                <input type="text" id="first-name" required>
+                                <small class="error-message" id="first-name-error"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name *</label>
+                                <input type="text" id="last-name" required>
+                                <small class="error-message" id="last-name-error"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                            <small class="error-message" id="email-error"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">SA Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="e.g. 82 123 4567" required>
+                            <small class="error-message" id="phone-error"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="domain">Area of Interest *</label>
+                            <select id="domain" required>
+                                <option value="">Select a domain...</option>
+                            </select>
+                            <small class="error-message" id="domain-error"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" required>
+                            <div class="password-strength" id="pass-strength">
+                                <div class="strength-track"><span class="strength-bar"></span></div>
+                            </div>
+                            <small class="error-message" id="password-error"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password *</label>
+                            <input type="password" id="confirm-password" required>
+                            <small class="error-message" id="confirm-password-error"></small>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the <a href="#" style="color: var(--accent);">Terms of Service</a> and <a href="#" style="color: var(--accent);">Privacy Policy</a>.</label>
+                        </div>
+                        <small class="error-message" id="terms-error" style="margin-top: -1rem; margin-bottom: 1rem;"></small>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                    </form>
+
+                    <!-- Fake Email Preview (Hidden by default) -->
+                    <div class="email-preview" id="email-preview">
+                        <div class="email-header">
+                            <div>
+                                <h3>Inbox <span style="color: var(--ink-muted); font-weight: 400;">(1 new message)</span></h3>
+                                <p style="font-size: 0.8125rem; color: var(--ink-soft); margin: 0;">From: <strong>CyberSNova Admissions</strong></p>
+                            </div>
+                            <span class="email-time">Just now</span>
+                        </div>
+                        
+                        <div class="email-body">
+                            <h2 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem;">Application Received!</h2>
+                            <p>Hi <strong id="email-name">Student</strong>,</p>
+                            <p>Thank you for applying to the CyberSNova Internship. We have successfully received your application for the <strong id="email-domain">Web Development</strong> domain.</p>
+                            <p>Our team will review your profile and reach out to you at <strong id="email-address">your email</strong> within 48 hours with your portal login details and next steps.</p>
+                            
+                            <div style="background: var(--paper); border: 1px solid var(--line); padding: 1rem; border-radius: var(--radius-sm); margin-block: 1.5rem;">
+                                <p style="font-size: 0.8125rem; color: var(--ink-muted); margin: 0;"><strong>Note:</strong> This is a simulated frontend preview for the project submission. No actual email was sent.</p>
+                            </div>
+                            
+                            <p>Best regards,<br><strong>The CyberSNova Team</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CyberSNova. All rights reserved.</p>
+                <p>Internship Portal Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/registration.js"></script>
+</body>
+</html>
