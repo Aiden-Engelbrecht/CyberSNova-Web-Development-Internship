@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daymark is a simple task-management application for organising daily work.">
+    <title>Daymark | Daily Task Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="#" class="logo" aria-label="Daymark home">
+                <span class="logo-mark" aria-hidden="true">D</span>
+                <span>Daymark</span>
+            </a>
+            <p class="session-note">Tasks saved this session</p>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <section class="page-introduction">
+            <div>
+                <p class="eyebrow">Daily task manager</p>
+                <h1>Make today manageable.</h1>
+                <p class="introduction-text">
+                    Add tasks, schedule them for specific days, and switch between list and calendar views.
+                </p>
+            </div>
+
+            <div class="date-card">
+                <span class="date-day" id="current-day">Monday</span>
+                <strong class="date-number" id="current-date">21</strong>
+                <span class="date-month" id="current-month">October 2026</span>
+            </div>
+        </section>
+
+        <section class="task-application" aria-labelledby="task-heading">
+            <header class="task-header">
+                <div>
+                    <p class="task-label">My tasks</p>
+                    <h2 id="task-heading">Your schedule</h2>
+                </div>
+                <div class="task-summary" aria-live="polite">
+                    <strong id="remaining-count">0</strong>
+                    <span id="remaining-label">tasks remaining</span>
+                </div>
+            </header>
+
+            <form class="task-form" id="task-form" novalidate>
+                <div class="task-input-group">
+                    <div class="input-wrapper">
+                        <label for="task-input" class="visually-hidden">Task</label>
+                        <input type="text" id="task-input" maxlength="120" placeholder="What needs to be done?" autocomplete="off">
+                    </div>
+                    <div class="date-wrapper">
+                        <label for="task-date" class="visually-hidden">Due date</label>
+                        <input type="date" id="task-date" required>
+                    </div>
+                    <button class="add-task-button" type="submit">
+                        <span aria-hidden="true">+</span> Add
+                    </button>
+                </div>
+                <div class="input-information">
+                    <small class="error-message" id="task-error" role="alert"></small>
+                    <small id="character-count">0 / 120</small>
+                </div>
+            </form>
+
+            <div class="task-controls">
+                <div class="filter-controls" role="group" aria-label="Filter tasks">
+                    <button class="filter-button is-active" data-filter="all">All</button>
+                    <button class="filter-button" data-filter="active">Active</button>
+                    <button class="filter-button" data-filter="completed">Completed</button>
+                </div>
+                
+                <div class="view-controls" role="group" aria-label="View">
+                    <button class="view-button is-active" data-view="list">List</button>
+                    <button class="view-button" data-view="calendar">Calendar</button>
+                </div>
+
+                <button class="clear-completed-button" id="clear-completed" disabled>Clear completed</button>
+            </div>
+
+            <!-- List View -->
+            <div class="task-list-container" id="task-list-container"></div>
+
+            <!-- Calendar View -->
+            <div class="calendar-container" id="calendar-container" style="display: none;">
+                <header class="calendar-header">
+                    <button id="prev-month" class="cal-btn">←</button>
+                    <h3 id="calendar-month-year">October 2026</h3>
+                    <button id="next-month" class="cal-btn">→</button>
+                </header>
+                <div class="calendar-grid-header">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="calendar-wrapper">
+                    <div class="calendar-grid" id="calendar-grid"></div>
+                    
+                    <!-- Popover Card for Tasks -->
+                    <div class="calendar-popover" id="calendar-popover">
+                        <div class="popover-header">
+                            <h4 id="popover-date-title">Monday, 21 Oct</h4>
+                            <button class="close-popover-btn" id="close-popover">×</button>
+                        </div>
+                        <ul class="popover-task-list" id="popover-task-list">
+                            <!-- Tasks appear here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="empty-state" id="empty-state">
+                <div class="empty-state-icon">✓</div>
+                <h3 id="empty-state-title">Your list is clear</h3>
+                <p id="empty-state-message">Add your first task above to begin planning.</p>
+            </div>
+
+            <footer class="task-footer">
+                <p>Complete tasks by clicking the circle.</p>
+                <button class="delete-all-button" id="delete-all" disabled>Delete all</button>
+            </footer>
+        </section>
+    </main>
+
+    <!-- Edit Modal -->
+    <div class="modal-backdrop" id="edit-modal" aria-hidden="true">
+        <section class="edit-modal" role="dialog" aria-modal="true">
+            <header class="edit-modal-header">
+                <div>
+                    <p class="task-label">Update task</p>
+                    <h2>Edit task</h2>
+                </div>
+                <button class="close-modal-button" id="close-modal">×</button>
+            </header>
+            <form id="edit-form" novalidate>
+                <div class="form-field">
+                    <label for="edit-task-input">Task description</label>
+                    <textarea id="edit-task-input" rows="3" maxlength="120"></textarea>
+                    <label for="edit-task-date" style="margin-top: 0.75rem;">Due date</label>
+                    <input type="date" id="edit-task-date">
+                    <div class="input-information">
+                        <small class="error-message" id="edit-task-error" role="alert"></small>
+                        <small id="edit-character-count">0 / 120</small>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="cancel-button" id="cancel-edit" type="button">Cancel</button>
+                    <button class="save-button" type="submit">Save changes</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span id="toast-message">Task added</span>
+    </div>
+
+    <script src="js/todo.js"></script>
+</body>
+</html>
