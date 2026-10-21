@@ -24,7 +24,7 @@ CyberSNova Web Development Internship.
 
 ## Advanced-Level Project
 
-- CyberSNova Internship Portal — Not started
+- CyberSNova Internship Portal — Completed
 
 ## Technologies
 
