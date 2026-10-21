@@ -38,5 +38,4 @@ CyberSNova Web Development Internship.
 ## Repository Notice
 
 This repository is private and contains work completed for the
-CyberSNova Web Development Internship. The projects must not be
-publicly redistributed before the internship concludes.
+CyberSNova Web Development Internship.
