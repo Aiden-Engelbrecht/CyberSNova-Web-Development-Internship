@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidelines & FAQ | CyberSNova</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .guidelines-layout { max-width: 800px; margin-inline: auto; }
+        .policy-block { background: var(--surface); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 1.5rem; }
+        .policy-block h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent); }
+        .policy-block p, .policy-block li { color: var(--ink-soft); font-size: 0.9375rem; margin-bottom: 0.75rem; }
+        .policy-block ul { padding-left: 1.5rem; }
+        
+        .faq-item { border-bottom: 1px solid var(--line); padding-block: 1.25rem; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { font-weight: 600; font-size: 1rem; color: var(--ink); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { margin-top: 0.75rem; color: var(--ink-soft); font-size: 0.9375rem; display: none; }
+        .faq-answer.open { display: block; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><span class="logo-mark">C</span> CyberSNova</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="domains.html">Domains</a>
+                <a href="tasks.html">Tasks</a>
+                <a href="guidelines.html">Guidelines</a>
+                <a href="register.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container guidelines-layout">
+            <div class="page-header" style="text-align: left;">
+                <p class="eyebrow">Read before applying</p>
+                <h1>Internship Guidelines</h1>
+                <p class="text-soft">Please review our rules and frequently asked questions before submitting your application.</p>
+            </div>
+
+            <div class="policy-block">
+                <h3>1. Project Requirements</h3>
+                <p>You are required to complete <strong>any two levels</strong> of your chosen domain (Beginner, Intermediate, or Advanced). Alternatively, you can complete one level and write a blog post relevant to your field.</p>
+                <ul>
+                    <li>All work must be your own. Plagiarism will result in immediate termination.</li>
+                    <li>Ensure all required files (source code, report) are submitted via the official portal before the deadline.</li>
+                    <li>Your report must include screenshots of your working projects.</li>
+                </ul>
+            </div>
+
+            <div class="policy-block">
+                <h3>2. AI Usage Policy</h3>
+                <p>You may use AI tools (like ChatGPT) for guidance, learning, and debugging. However, you may not use AI to write your entire project or your final report. Your submission should reflect your own understanding.</p>
+            </div>
+
+            <div class="policy-block">
+                <h3>3. Certification</h3>
+                <p>Your Internship Completion Certificate will only be issued after your project has been successfully submitted, evaluated, and found to comply with all guidelines.</p>
+            </div>
+
+            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            
+            <div class="policy-block">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open')">Can I do the internship remotely? <span>+</span></div>
+                    <div class="faq-answer">Yes, the entire internship is remote and can be completed from anywhere.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open')">How long do I have to complete the tasks? <span>+</span></div>
+                    <div class="faq-answer">You have 4 weeks from the date of your acceptance to complete and submit your projects.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open')">Can I share my project on GitHub? <span>+</span></div>
+                    <div class="faq-answer">You may use a private GitHub repository for version control. Do not make it public until the internship has officially ended.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CyberSNova. All rights reserved.</p>
+                <p>Internship Portal Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
