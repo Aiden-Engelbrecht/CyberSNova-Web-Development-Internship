@@ -8,7 +8,6 @@ CyberSNova Web Development Internship.
 - **Name:** Aiden Engelbrecht
 - **Domain:** Web Development
 - **Internship period:** October 2026
-- **Registration number:** Add registration number here
 
 ## Selected Levels
 
